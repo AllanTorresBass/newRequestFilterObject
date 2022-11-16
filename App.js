@@ -61,8 +61,39 @@ export default function App() {
         <Text style={{ fontSize: 25 }}>type: {data.type}</Text>
       </View> */}
       <Text>{"\n "}</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+        }}
+      >
+        <AntDesign name="left" size={24} color="black" />
+        <TouchableOpacity
+          style={{
+            width: 200,
+            height: 50,
+
+            alignItems: "left",
+          }}
+          onPress={() => {
+            setRecordNavLocation(-1);
+            setLocationButton(-1);
+            setControlWOTL(0);
+            setControlButton(0);
+            setRecordNav([]);
+          }}
+        >
+          <AntDesign
+            name="close"
+            size={24}
+            color="black"
+            style={{ left: 315 }}
+          />
+        </TouchableOpacity>
+      </View>
       <ScrollView horizontal={true} style={{ height: 30 }}>
         {recordNav.map((e, i) => {
+          console.log(e);
           return (
             <TouchableOpacity
               key={"scroll" + i}
@@ -80,26 +111,27 @@ export default function App() {
         })}
       </ScrollView>
       <ScrollView style={{ height: 1000 }}>
-        <TouchableOpacity
-          style={{
-            width: 200,
-            height: 50,
-
-            alignItems: "left",
-          }}
-          onPress={() => {
-            setRecordNavLocation(-1);
-            setLocationButton(-1);
-            setControlWOTL(0);
-            setControlButton(0);
-            setRecordNav([]);
-          }}
-        >
-          <AntDesign name="home" size={34} color="black" />
-        </TouchableOpacity>
         <View>
           {current.map((e, i) => {
-            if (e !== "Message") {
+            if (e === "Message") {
+              return (
+                <View style={{ width: "80%" }}>
+                  <Text>{data.text.toString()}</Text>
+                </View>
+              );
+            } else if (e === "Submit") {
+              return (
+                <View style={{ width: "80%" }}>
+                  <Text>Form</Text>
+                </View>
+              );
+            } else if (e === "Equipment_List") {
+              return (
+                <View style={{ width: "80%" }}>
+                  <Text>Equipment List</Text>
+                </View>
+              );
+            } else {
               return (
                 <>
                   <TouchableOpacity
@@ -135,12 +167,6 @@ export default function App() {
                   </TouchableOpacity>
                   <Text key={"ex" + i}>{"\n "}</Text>
                 </>
-              );
-            } else {
-              return (
-                <View style={{ width: "80%" }}>
-                  <Text>{data.text.toString()}</Text>
-                </View>
               );
             }
           })}

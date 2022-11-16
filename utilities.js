@@ -10,6 +10,7 @@ export const returnKeys = (obj) => {
 
     data.id = value.id;
     data.type = value.type;
+    //We can resolve to string with Object.entries
     data.text = value.text ? value.text.replace(" ", ".") : "";
     data.navigationText = value.navigationText;
     data.parent = value.parent;
