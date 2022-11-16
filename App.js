@@ -47,7 +47,7 @@ export default function App() {
     setNextObj(recordObj[recordNavLocation]);
     setLocationButton(-1);
   }, [recordNavLocation]);
-  if (data.text !== "") console.log(data.text.replaceAll("\n\n", "\n"));
+
   return (
     <View style={styles.container}>
       {/* <View>
@@ -67,13 +67,24 @@ export default function App() {
           width: "100%",
         }}
       >
-        <AntDesign name="left" size={24} color="black" />
         <TouchableOpacity
           style={{
             width: 200,
             height: 50,
-
-            alignItems: "left",
+          }}
+          onPress={() => {
+            console.log("recordObj", recordObj[recordObj.length - 2]);
+            setRecordNav(recordNav.filter((e, i) => i < recordNav.length - 1));
+            setNextObj(recordObj[recordObj.length - 2]);
+            setLocationButton(-1);
+          }}
+        >
+          <AntDesign name="left" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            width: 200,
+            height: 50,
           }}
           onPress={() => {
             setRecordNavLocation(-1);
@@ -87,13 +98,27 @@ export default function App() {
             name="close"
             size={24}
             color="black"
-            style={{ left: 315 }}
+            style={{ left: 145 }}
           />
         </TouchableOpacity>
       </View>
-      <ScrollView horizontal={true} style={{ height: 30 }}>
+      <ScrollView
+        horizontal={true}
+        style={{ height: 30 }}
+        contentContainerStyle={{ alignItems: "left" }}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            setRecordNavLocation(-1);
+            setLocationButton(-1);
+            setControlWOTL(0);
+            setControlButton(0);
+            setRecordNav([]);
+          }}
+        >
+          <Text style={{ fontSize: 17 }}> New Request {"/"} </Text>
+        </TouchableOpacity>
         {recordNav.map((e, i) => {
-          console.log(e);
           return (
             <TouchableOpacity
               key={"scroll" + i}
@@ -110,7 +135,7 @@ export default function App() {
           );
         })}
       </ScrollView>
-      <ScrollView style={{ height: 1000 }}>
+      <ScrollView style={{ height: 1000, left: 30 }}>
         <View>
           {current.map((e, i) => {
             if (e === "Message") {
@@ -223,7 +248,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    alignItems: "center",
+
     top: 40,
   },
 });
