@@ -42,12 +42,12 @@ export default function App() {
     newObj = returnKeys(nextObj).newObj;
   }
   useEffect(() => {
-    console.log(recordNav.filter((e, i) => i <= recordNavLocation));
+    // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
     setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
     setNextObj(recordObj[recordNavLocation]);
     setLocationButton(-1);
   }, [recordNavLocation]);
-
+  if (data.text !== "") console.log(data.text.replaceAll("\n\n", "\n"));
   return (
     <View style={styles.container}>
       {/* <View>
@@ -65,12 +65,13 @@ export default function App() {
         {recordNav.map((e, i) => {
           return (
             <TouchableOpacity
+              key={"scroll" + i}
               onPress={() => {
                 setRecordNavLocation(i);
                 setControlButton(0);
               }}
             >
-              <Text style={{ fontSize: 17 }}>
+              <Text style={{ fontSize: 17 }} key={"scrollText" + i}>
                 {" "}
                 {e} {"/"}{" "}
               </Text>
@@ -97,41 +98,52 @@ export default function App() {
           <AntDesign name="home" size={34} color="black" />
         </TouchableOpacity>
         <View>
-          {current.map((e, i) => (
-            <>
-              <TouchableOpacity
-                style={{
-                  left: 0,
-                  top: 20,
-                  width: 300,
-                  height: 50,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: locationButton === i ? "#2D7BB4" : "white",
-                }}
-                onPress={() => {
-                  setLocationButton(i);
-                  setSelectObj(newObj[i]);
-                  setTextNav(e);
-                  setControlButton(1);
-                }}
-                key={"e" + i}
-              >
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: locationButton === i ? "white" : "black",
-                  }}
-                >
-                  {e}
-                </Text>
-              </TouchableOpacity>
-              <Text key={"ex" + i}>{"\n "}</Text>
-            </>
-          ))}
+          {current.map((e, i) => {
+            if (e !== "Message") {
+              return (
+                <>
+                  <TouchableOpacity
+                    style={{
+                      left: 0,
+                      top: 20,
+                      width: 300,
+                      height: 50,
+                      borderColor: "black",
+                      borderWidth: 1,
+                      borderRadius: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor:
+                        locationButton === i ? "#2D7BB4" : "white",
+                    }}
+                    onPress={() => {
+                      setLocationButton(i);
+                      setSelectObj(newObj[i]);
+                      setTextNav(e);
+                      setControlButton(1);
+                    }}
+                    key={"e" + i}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        color: locationButton === i ? "white" : "black",
+                      }}
+                    >
+                      {e}
+                    </Text>
+                  </TouchableOpacity>
+                  <Text key={"ex" + i}>{"\n "}</Text>
+                </>
+              );
+            } else {
+              return (
+                <View style={{ width: "80%" }}>
+                  <Text>{data.text.toString()}</Text>
+                </View>
+              );
+            }
+          })}
           <TouchableOpacity
             style={{
               top: 20,
@@ -144,18 +156,29 @@ export default function App() {
               borderRadius: 10,
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: controlButton === 1 ? "#2D7BB4" : "gray",
+              backgroundColor:
+                controlButton === 1 || data.navigationText === "Finish"
+                  ? "#2D7BB4"
+                  : "gray",
             }}
             onPress={() => {
-              if (controlButton === 1) {
-                setControlWOTL(1);
-                setNextObj(selectObj);
-                setLocationButton(-1);
-                setRecordNav([...recordNav, textNav]);
-                setRecordObj([...recordObj, selectObj]);
-                setControlButton(0);
+              if (data.navigationText !== "Finish") {
+                if (controlButton === 1) {
+                  setControlWOTL(1);
+                  setNextObj(selectObj);
+                  setLocationButton(-1);
+                  setRecordNav([...recordNav, textNav]);
+                  setRecordObj([...recordObj, selectObj]);
+                  setControlButton(0);
+                } else {
+                  Alert.alert("Must to select an option");
+                }
               } else {
-                Alert.alert("Must to select an option");
+                setRecordNavLocation(-1);
+                setLocationButton(-1);
+                setControlWOTL(0);
+                setControlButton(0);
+                setRecordNav([]);
               }
             }}
           >

@@ -10,13 +10,16 @@ export const returnKeys = (obj) => {
 
     data.id = value.id;
     data.type = value.type;
+    data.text = value.text ? value.text.replace(" ", ".") : "";
     data.navigationText = value.navigationText;
     data.parent = value.parent;
     newObj.push(value.children);
-    for (const [key, value2] of Object.entries(value.children)) {
-      next.push(key.replace("__", "/").replace("_", " "));
-      firstObj.push(value2.children);
-    }
+    if (value.children) {
+      for (const [key, value2] of Object.entries(value.children)) {
+        next.push(key.replace("__", "/").replace("_", " "));
+        firstObj.push(value2.children);
+      }
+    } else null;
   }
 
   return { current, next, newObj, data, firstObj };
