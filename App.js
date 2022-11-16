@@ -46,7 +46,7 @@ export default function App() {
     // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
     setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
     setNextObj(recordObj[recordNavLocation]);
-
+    setRecordObj(recordObj.filter((e, i) => i < recordNav.length - 1));
     setLocationButton(-1);
   }, [recordNavLocation]);
 
