@@ -41,10 +41,12 @@ export default function App() {
     data = returnKeys(nextObj).data;
     newObj = returnKeys(nextObj).newObj;
   }
+
   useEffect(() => {
     // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
     setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
     setNextObj(recordObj[recordNavLocation]);
+
     setLocationButton(-1);
   }, [recordNavLocation]);
 
@@ -65,6 +67,7 @@ export default function App() {
         style={{
           flexDirection: "row",
           width: "100%",
+          height: 20,
         }}
       >
         <TouchableOpacity
@@ -73,10 +76,23 @@ export default function App() {
             height: 50,
           }}
           onPress={() => {
-            console.log("recordObj", recordObj[recordObj.length - 2]);
-            setRecordNav(recordNav.filter((e, i) => i < recordNav.length - 1));
-            setNextObj(recordObj[recordObj.length - 2]);
-            setLocationButton(-1);
+            console.log("recordObj.length: ", recordObj.length);
+            if (recordObj.length > 1) {
+              setRecordNav(
+                recordNav.filter((e, i) => i < recordNav.length - 1)
+              );
+              setNextObj(() => recordObj[recordObj.length - 2]);
+              setRecordObj(
+                recordObj.filter((e, i) => i < recordNav.length - 1)
+              );
+              setLocationButton(-1);
+            } else if (recordObj.length === 1) {
+              setRecordNavLocation(-1);
+              setLocationButton(-1);
+              setControlWOTL(0);
+              setControlButton(0);
+              setRecordNav([]);
+            }
           }}
         >
           <AntDesign name="left" size={24} color="black" />
@@ -102,6 +118,7 @@ export default function App() {
           />
         </TouchableOpacity>
       </View>
+      <Text>{"\n\n\n  "}</Text>
       <ScrollView
         horizontal={true}
         style={{ height: 30 }}
@@ -137,7 +154,7 @@ export default function App() {
       </ScrollView>
       <ScrollView style={{ height: 1000, left: 30 }}>
         <View>
-          {current.map((e, i) => {
+          {current?.map((e, i) => {
             if (e === "Message") {
               return (
                 <View style={{ width: "80%" }}>
