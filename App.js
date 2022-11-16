@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { obj } from "./arbol.js";
 import { returnKeys } from "./utilities";
-
+import { AntDesign } from "@expo/vector-icons";
 export default function App() {
   const [increase, setIncrease] = useState(0);
   //control Which Object To Loop
@@ -38,10 +38,18 @@ export default function App() {
     data = returnKeys(nextObj).data;
     newObj = returnKeys(nextObj).newObj;
   }
+  useEffect(() => {
+    (() => {
+      console.log(recordNav.filter((e, i) => i <= recordNavLocation));
+      setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
+      setNextObj(recordObj[recordNavLocation]);
+      setLocationButton(-1);
+    })();
+  }, [recordNavLocation]);
 
   return (
     <View style={styles.container}>
-      <View>
+      {/* <View>
         <Text style={{ fontSize: 25 }}>id: {data.id}</Text>
         <Text style={{ fontSize: 25 }}>
           parent: {data.parent === undefined ? "Vacio" : data.parent}
@@ -50,17 +58,14 @@ export default function App() {
           navigationText: {data.navigationText}
         </Text>
         <Text style={{ fontSize: 25 }}>type: {data.type}</Text>
-      </View>
+      </View> */}
       <Text>{"\n "}</Text>
       <ScrollView horizontal={true} style={{ height: 30 }}>
         {recordNav.map((e, i) => {
-          console.log(recordNav.find((e, i) => i <= recordNavLocation));
           return (
             <TouchableOpacity
               onPress={() => {
                 setRecordNavLocation(i);
-
-                recordNav.find((e, i) => i <= recordNavLocation);
               }}
             >
               <Text style={{ fontSize: 17 }}>
@@ -71,7 +76,7 @@ export default function App() {
           );
         })}
       </ScrollView>
-      <View style={{ top: 0 }}>
+      <ScrollView style={{ height: 1000 }}>
         <TouchableOpacity
           style={{
             width: 200,
@@ -80,12 +85,13 @@ export default function App() {
             alignItems: "left",
           }}
           onPress={() => {
+            setRecordNavLocation(-1);
             setLocationButton(-1);
             setControlWOTL(0);
             setRecordNav([]);
           }}
         >
-          <Text style={{ fontSize: 22 }}> {"<"} Back</Text>
+          <AntDesign name="home" size={34} color="black" />
         </TouchableOpacity>
         <View>
           {current.map((e, i) => (
@@ -150,7 +156,7 @@ export default function App() {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
       <StatusBar style="auto" />
     </View>
   );
