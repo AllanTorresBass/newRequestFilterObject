@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { obj } from "./arbol.js";
 import { returnKeys } from "./utilities";
 
@@ -10,7 +17,11 @@ export default function App() {
   const [controlWOTL, setControlWOTL] = useState(0);
   const [nextObj, setNextObj] = useState();
   const [selectObj, setSelectObj] = useState();
-
+  const [locationButton, setLocationButton] = useState();
+  const [textNav, setTextNav] = useState();
+  const [recordNavLocation, setRecordNavLocation] = useState();
+  const [recordNav, setRecordNav] = useState([]);
+  const [recordObj, setRecordObj] = useState([]);
   let current;
   let next;
   let data;
@@ -27,6 +38,7 @@ export default function App() {
     data = returnKeys(nextObj).data;
     newObj = returnKeys(nextObj).newObj;
   }
+
   return (
     <View style={styles.container}>
       <View>
@@ -39,45 +51,105 @@ export default function App() {
         </Text>
         <Text style={{ fontSize: 25 }}>type: {data.type}</Text>
       </View>
-      <View style={{ top: 50 }}>
+      <Text>{"\n "}</Text>
+      <ScrollView horizontal={true} style={{ height: 30 }}>
+        {recordNav.map((e, i) => {
+          console.log(recordNav.find((e, i) => i <= recordNavLocation));
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                setRecordNavLocation(i);
+
+                recordNav.find((e, i) => i <= recordNavLocation);
+              }}
+            >
+              <Text style={{ fontSize: 17 }}>
+                {" "}
+                {e} {"/"}{" "}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
+      <View style={{ top: 0 }}>
         <TouchableOpacity
-          style={{ left: 50 }}
+          style={{
+            width: 200,
+            height: 50,
+
+            alignItems: "left",
+          }}
           onPress={() => {
+            setLocationButton(-1);
             setControlWOTL(0);
+            setRecordNav([]);
           }}
         >
-          <Text>Back</Text>
+          <Text style={{ fontSize: 22 }}> {"<"} Back</Text>
         </TouchableOpacity>
-        {current.map((e, i) => (
+        <View>
+          {current.map((e, i) => (
+            <>
+              <TouchableOpacity
+                style={{
+                  left: 0,
+                  top: 20,
+                  width: 300,
+                  height: 50,
+                  borderColor: "black",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: locationButton === i ? "#2D7BB4" : "white",
+                }}
+                onPress={() => {
+                  setLocationButton(i);
+                  setSelectObj(newObj[i]);
+                  setTextNav(e);
+                }}
+                key={"e" + i}
+              >
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: locationButton === i ? "white" : "black",
+                  }}
+                >
+                  {e}
+                </Text>
+              </TouchableOpacity>
+              <Text key={"ex" + i}>{"\n "}</Text>
+            </>
+          ))}
           <TouchableOpacity
             style={{
-              left: 20,
               top: 20,
-              width: 200,
+              left: 0,
+              top: 20,
+              width: 300,
               height: 50,
               borderColor: "black",
               borderWidth: 1,
               borderRadius: 10,
               alignItems: "center",
               justifyContent: "center",
+              backgroundColor: "#2D7BB4",
             }}
             onPress={() => {
-              setSelectObj(newObj[i]);
+              setControlWOTL(1);
+              setNextObj(selectObj);
+              setLocationButton(-1);
+              setRecordNav([...recordNav, textNav]);
+              setRecordObj([...recordObj, selectObj]);
             }}
-            key={"e" + i}
           >
-            <Text style={{ fontSize: 20 }}>{e}</Text>
+            <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}>
+              {" "}
+              {data.navigationText}
+            </Text>
           </TouchableOpacity>
-        ))}
-        <TouchableOpacity
-          style={{ left: 50, top: 20 }}
-          onPress={() => {
-            setControlWOTL(1);
-            setNextObj(selectObj);
-          }}
-        >
-          <Text> {data.navigationText}</Text>
-        </TouchableOpacity>
+        </View>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -86,7 +158,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     top: 40,
