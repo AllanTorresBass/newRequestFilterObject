@@ -7,6 +7,7 @@ import {
   Button,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import { obj } from "./arbol.js";
 import { returnKeys } from "./utilities";
@@ -15,6 +16,7 @@ export default function App() {
   const [increase, setIncrease] = useState(0);
   //control Which Object To Loop
   const [controlWOTL, setControlWOTL] = useState(0);
+  const [controlButton, setControlButton] = useState(0);
   const [nextObj, setNextObj] = useState();
   const [selectObj, setSelectObj] = useState();
   const [locationButton, setLocationButton] = useState();
@@ -22,6 +24,7 @@ export default function App() {
   const [recordNavLocation, setRecordNavLocation] = useState();
   const [recordNav, setRecordNav] = useState([]);
   const [recordObj, setRecordObj] = useState([]);
+
   let current;
   let next;
   let data;
@@ -64,6 +67,7 @@ export default function App() {
             <TouchableOpacity
               onPress={() => {
                 setRecordNavLocation(i);
+                setControlButton(0);
               }}
             >
               <Text style={{ fontSize: 17 }}>
@@ -86,6 +90,7 @@ export default function App() {
             setRecordNavLocation(-1);
             setLocationButton(-1);
             setControlWOTL(0);
+            setControlButton(0);
             setRecordNav([]);
           }}
         >
@@ -111,6 +116,7 @@ export default function App() {
                   setLocationButton(i);
                   setSelectObj(newObj[i]);
                   setTextNav(e);
+                  setControlButton(1);
                 }}
                 key={"e" + i}
               >
@@ -138,14 +144,19 @@ export default function App() {
               borderRadius: 10,
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "#2D7BB4",
+              backgroundColor: controlButton === 1 ? "#2D7BB4" : "gray",
             }}
             onPress={() => {
-              setControlWOTL(1);
-              setNextObj(selectObj);
-              setLocationButton(-1);
-              setRecordNav([...recordNav, textNav]);
-              setRecordObj([...recordObj, selectObj]);
+              if (controlButton === 1) {
+                setControlWOTL(1);
+                setNextObj(selectObj);
+                setLocationButton(-1);
+                setRecordNav([...recordNav, textNav]);
+                setRecordObj([...recordObj, selectObj]);
+                setControlButton(0);
+              } else {
+                Alert.alert("Must to select an option");
+              }
             }}
           >
             <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}>

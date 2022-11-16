@@ -15,7 +15,15 @@ export let obj = {
             parent: "2",
             type: "button",
             navigationText: "Next",
-            children: {},
+            children: {
+              Message: {
+                id: "160",
+                parent: "158",
+                navigationText: "Finish",
+                text: "1. Call BRE Emergency Response\\nfor Water/Fire/Property Restoration\\n\\n2. Call Vendor directly and submit\\ninvoice through CAPEX Request Feature",
+                type: "message",
+              },
+            },
           },
           Non_Emergency: {
             id: "159",
@@ -28,14 +36,297 @@ export let obj = {
                 parent: "159",
                 type: "button",
                 navigationText: "Next",
-                children: {},
+                children: {
+                  Other: {
+                    id: "163",
+                    parent: "161",
+                    type: "button",
+                    navigationText: "Next",
+                    children: {
+                      Message: {
+                        id: "173",
+                        parent: "163",
+                        navigationText: "Finish",
+                        text: "Call vendor directly and submit invoice through CAPEX Request.",
+                        type: "message",
+                      },
+                    },
+                  },
+                  Plumbing: {
+                    id: "164",
+                    parent: "161",
+                    type: "button",
+                    navigationText: "Next",
+                    children: {
+                      Boiler__Hot_Water_Heater: {
+                        id: "174",
+                        parent: "164",
+                        type: "button",
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "178",
+                            parent: "174",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "179",
+                                parent: "178",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                      Water_Softener: {
+                        id: "175",
+                        parent: "164",
+                        type: "button",
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "184",
+                            parent: "175",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "185",
+                                parent: "184",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                      Circulation_Pump: {
+                        id: "176",
+                        parent: "164",
+                        type: "button",
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "180",
+                            parent: "176",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "181",
+                                parent: "180",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                      Pipe_Repair: {
+                        id: "177",
+                        parent: "164",
+                        type: "button",
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "182",
+                            parent: "177",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "183",
+                                parent: "182",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                  HVAC: {
+                    id: "165",
+                    parent: "161",
+                    type: "button",
+                    navigationText: "Next",
+                    children: {
+                      Equipment_List: {
+                        id: "167",
+                        parent: "165",
+                        type: "list",
+                        navigationText: "Next",
+                        query: 'apiGetEquipments("hvac")',
+                        children: {
+                          Form: {
+                            id: "169",
+                            parent: "167",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "170",
+                                parent: "169",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                      Other: {
+                        id: "168",
+                        parent: "165",
+                        type: "button",
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "171",
+                            parent: "168",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "172",
+                                parent: "171",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                  Refrigeration: {
+                    id: "166",
+                    parent: "161",
+                    type: "button",
+                    navigationText: "Next",
+                    children: {
+                      Other: {
+                        id: "186",
+                        parent: "166",
+                        type: "button",
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "190",
+                            parent: "186",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "191",
+                                parent: "190",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                      Equipment_List: {
+                        id: "187",
+                        parent: "166",
+                        type: "list",
+                        query: 'apiGetEquipments("refrigeration")',
+                        navigationText: "Next",
+                        children: {
+                          Form: {
+                            id: "188",
+                            parent: "187",
+                            navigationText: "Submit",
+                            requestCategory: "ServiceRequest",
+                            type: "form",
+                            upload: "files,photos",
+                            children: {
+                              Message: {
+                                id: "189",
+                                parent: "188",
+                                navigationText: "Finish",
+                                text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                                type: "message",
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
               },
               In_Room: {
                 id: "162",
                 parent: "159",
                 type: "button",
                 navigationText: "Next",
-                children: {},
+                children: {
+                  Other: {
+                    id: "192",
+                    parent: "162",
+                    navigationText: "Next",
+                    type: "button",
+                    children: {
+                      Message: {
+                        id: "196",
+                        parent: "192",
+                        navigationText: "Finish",
+                        text: "Call vendor directly and submit invoice through CAPEX Request.",
+                        type: "message",
+                      },
+                    },
+                  },
+                  HVAC: {
+                    id: "193",
+                    parent: "162",
+                    navigationText: "Next",
+                    type: "button",
+                    children: {
+                      Form: {
+                        id: "194",
+                        parent: "193",
+                        navigationText: "Submit",
+                        requestCategory: "ServiceRequest",
+                        type: "form",
+                        upload: "files,photos",
+                        children: {
+                          Message: {
+                            id: "195",
+                            parent: "194",
+                            navigationText: "Finish",
+                            text: "Service Request Submitted\\n\\nNGage will dispatch a technician and notify you prior to arrival.",
+                            type: "message",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
               },
             },
           },
