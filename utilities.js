@@ -25,21 +25,3 @@ export const returnKeys = (obj) => {
 
   return { current, next, newObj, data, firstObj };
 };
-export const returnKeysII = (obj) => {
-  let navigation = [];
-  let next = [];
-  for (const [key, value] of Object.entries(obj)) {
-    navigation.push(key);
-    next.push(value);
-    // console.log(`${value.children}`);
-  }
-  return { navigation };
-};
-export const returnNextNode = (obj) => {
-  let next = [];
-  for (const [key, value] of Object.entries(obj)) {
-    next.push(key);
-    // console.log(`${key}`);
-  }
-  return navigation;
-};

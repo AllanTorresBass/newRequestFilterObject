@@ -45,8 +45,9 @@ export default function App() {
   useEffect(() => {
     // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
     setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
-    setNextObj(recordObj[recordNavLocation]);
     setRecordObj(recordObj.filter((e, i) => i < recordNav.length - 1));
+    setNextObj(recordObj[recordNavLocation]);
+
     setLocationButton(-1);
   }, [recordNavLocation]);
 
@@ -76,7 +77,6 @@ export default function App() {
             height: 50,
           }}
           onPress={() => {
-            console.log("recordObj.length: ", recordObj.length);
             if (recordObj.length > 1) {
               setRecordNav(
                 recordNav.filter((e, i) => i < recordNav.length - 1)
