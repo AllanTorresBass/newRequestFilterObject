@@ -123,13 +123,14 @@ export default function App() {
         </TouchableOpacity>
         {recordNav.map((e, i) => {
           let location = i;
+          console.log("location: ", location);
           return (
             <TouchableOpacity
               key={"scroll" + i}
               onPress={() => {
                 if (i > 0) {
                   setRecordNav(recordNav.filter((e, i) => i <= location));
-                  setRecordObj(recordObj.filter((e, i) => i <= location));
+                  setRecordObj(recordObj.filter((e, i) => i <= location - 1));
                   setNextObj(recordObj[location]);
 
                   setLocationButton(-1);
