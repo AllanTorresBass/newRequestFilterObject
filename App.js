@@ -21,7 +21,7 @@ export default function App() {
   const [selectObj, setSelectObj] = useState();
   const [locationButton, setLocationButton] = useState();
   const [textNav, setTextNav] = useState();
-  const [recordNavLocation, setRecordNavLocation] = useState();
+  const [recordNavLocation, setRecordNavLocation] = useState(0);
   const [recordNav, setRecordNav] = useState([]);
   const [recordObj, setRecordObj] = useState([]);
 
@@ -41,17 +41,6 @@ export default function App() {
     data = returnKeys(nextObj).data;
     newObj = returnKeys(nextObj).newObj;
   }
-
-  useEffect(() => {
-    // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
-    (() => {
-      setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
-      setRecordObj(recordObj.filter((e, i) => i <= recordNavLocation));
-      setNextObj(recordObj[recordNavLocation]);
-
-      setLocationButton(-1);
-    })();
-  }, [recordNavLocation]);
 
   return (
     <View style={styles.container}>
@@ -89,7 +78,7 @@ export default function App() {
               );
               setLocationButton(-1);
             } else if (recordObj.length === 1) {
-              setRecordNavLocation(-1);
+              setRecordNavLocation(0);
               setLocationButton(-1);
               setControlWOTL(0);
               setControlButton(0);
@@ -142,6 +131,16 @@ export default function App() {
             <TouchableOpacity
               key={"scroll" + i}
               onPress={() => {
+                setRecordNav(
+                  recordNav.filter((e, i) => i <= recordNavLocation)
+                );
+                setRecordObj(
+                  recordObj.filter((e, i) => i <= recordNavLocation)
+                );
+                setNextObj(recordObj[recordNavLocation]);
+
+                setLocationButton(-1);
+
                 setRecordNavLocation(i);
                 setControlButton(0);
               }}
