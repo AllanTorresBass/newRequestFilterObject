@@ -1466,115 +1466,56 @@ export let obj = {
                           },
                         },
                       },
-                    },
-                    HVAC: {
-                      id: "48",
-                      parent: "10",
-                      navigationText: "Next",
-                      type: "button",
-                      children: {
-                        Equipment_List: {
-                          id: "54",
-                          parent: "48",
-                          navigationText: "Next",
-                          query: 'apiGetEquipments("hvac")',
-                          type: "list",
-                          children: {
-                            Form: {
-                              id: "55",
-                              parent: "54",
-                              navigationText: "Submit",
-                              requestCategory: "ProjectCompleted",
-                              type: "form",
-                              upload: "invoices,photos",
-                              children: {
-                                Message: {
-                                  id: "56",
-                                  parent: "55",
-                                  navigationText: "Finish",
-                                  text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
-                                  type: "message",
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                      Other: {
-                        id: "53",
-                        parent: "48",
+                      HVAC: {
+                        id: "48",
+                        parent: "10",
                         navigationText: "Next",
                         type: "button",
                         children: {
-                          Form: {
-                            id: "57",
-                            parent: "53",
-                            navigationText: "Submit",
-                            requestCategory: "ProjectCompleted",
-                            type: "form",
-                            upload: "invoices,photos",
+                          Equipment_List: {
+                            id: "54",
+                            parent: "48",
+                            navigationText: "Next",
+                            query: 'apiGetEquipments("hvac")',
+                            type: "list",
                             children: {
-                              Message: {
-                                id: "58",
-                                parent: "57",
-                                navigationText: "Finish",
-                                text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
-                                type: "message",
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
-                    Refrigeration: {
-                      id: "49",
-                      parent: "10",
-                      navigationText: "Next",
-                      type: "button",
-                      children: {
-                        Equipment_List: {
-                          id: "75",
-                          parent: "49",
-                          navigationText: "Next",
-                          query: 'apiGetEquipments("refrigeration")',
-                          type: "list",
-                          children: {
-                            Form: {
-                              id: "76",
-                              parent: "75",
-                              navigationText: "Submit",
-                              requestCategory: "ProjectCompleted",
-                              type: "form",
-                              upload: "invoices,photos",
-                              children: {
-                                Message: {
-                                  id: "77",
-                                  parent: "76",
-                                  navigationText: "Finish",
-                                  text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
-                                  type: "message",
+                              Form: {
+                                id: "55",
+                                parent: "54",
+                                navigationText: "Submit",
+                                requestCategory: "ProjectCompleted",
+                                type: "form",
+                                upload: "invoices,photos",
+                                children: {
+                                  Message: {
+                                    id: "56",
+                                    parent: "55",
+                                    navigationText: "Finish",
+                                    text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
+                                    type: "message",
+                                  },
                                 },
                               },
                             },
                           },
                         },
                         Other: {
-                          id: "74",
-                          parent: "49",
+                          id: "53",
+                          parent: "48",
                           navigationText: "Next",
                           type: "button",
                           children: {
                             Form: {
-                              id: "78",
-                              parent: "74",
+                              id: "57",
+                              parent: "53",
                               navigationText: "Submit",
                               requestCategory: "ProjectCompleted",
                               type: "form",
                               upload: "invoices,photos",
                               children: {
                                 Message: {
-                                  id: "79",
-                                  parent: "78",
+                                  id: "58",
+                                  parent: "57",
                                   navigationText: "Finish",
                                   text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
                                   type: "message",
@@ -1584,27 +1525,86 @@ export let obj = {
                           },
                         },
                       },
-                    },
-                    Electrical: {
-                      id: "50",
-                      parent: "10",
-                      navigationText: "Next",
-                      type: "button",
-                      children: {
-                        Form: {
-                          id: "51",
-                          parent: "50",
-                          navigationText: "Submit",
-                          requestCategory: "ProjectCompleted",
-                          type: "form",
-                          upload: "invoices,photos",
-                          children: {
-                            Message: {
-                              id: "52",
-                              parent: "51",
-                              navigationText: "Finish",
-                              text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
-                              type: "message",
+                      Refrigeration: {
+                        id: "49",
+                        parent: "10",
+                        navigationText: "Next",
+                        type: "button",
+                        children: {
+                          Equipment_List: {
+                            id: "75",
+                            parent: "49",
+                            navigationText: "Next",
+                            query: 'apiGetEquipments("refrigeration")',
+                            type: "list",
+                            children: {
+                              Form: {
+                                id: "76",
+                                parent: "75",
+                                navigationText: "Submit",
+                                requestCategory: "ProjectCompleted",
+                                type: "form",
+                                upload: "invoices,photos",
+                                children: {
+                                  Message: {
+                                    id: "77",
+                                    parent: "76",
+                                    navigationText: "Finish",
+                                    text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
+                                    type: "message",
+                                  },
+                                },
+                              },
+                            },
+                          },
+                          Other: {
+                            id: "74",
+                            parent: "49",
+                            navigationText: "Next",
+                            type: "button",
+                            children: {
+                              Form: {
+                                id: "78",
+                                parent: "74",
+                                navigationText: "Submit",
+                                requestCategory: "ProjectCompleted",
+                                type: "form",
+                                upload: "invoices,photos",
+                                children: {
+                                  Message: {
+                                    id: "79",
+                                    parent: "78",
+                                    navigationText: "Finish",
+                                    text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
+                                    type: "message",
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                      Electrical: {
+                        id: "50",
+                        parent: "10",
+                        navigationText: "Next",
+                        type: "button",
+                        children: {
+                          Form: {
+                            id: "51",
+                            parent: "50",
+                            navigationText: "Submit",
+                            requestCategory: "ProjectCompleted",
+                            type: "form",
+                            upload: "invoices,photos",
+                            children: {
+                              Message: {
+                                id: "52",
+                                parent: "51",
+                                navigationText: "Finish",
+                                text: "CAPEX Request Submitted.\\n\\nNGage will review and process for payment",
+                                type: "message",
+                              },
                             },
                           },
                         },
