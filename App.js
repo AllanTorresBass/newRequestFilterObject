@@ -45,7 +45,7 @@ export default function App() {
   useEffect(() => {
     // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
     setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
-    setRecordObj(recordObj.filter((e, i) => i < recordNav.length - 1));
+    setRecordObj(recordObj.filter((e, i) => i < recordNavLocation));
     setNextObj(recordObj[recordNavLocation]);
 
     setLocationButton(-1);
