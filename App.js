@@ -66,16 +66,19 @@ export default function App() {
             height: 50,
           }}
           onPress={() => {
-            if (recordObj.length > 1) {
+            console.log("recordObj.length: ", recordObj.length);
+            console.log("recordNav.length: ", recordNav.length);
+            if (recordNav.length > 1) {
               setRecordNav(
                 recordNav.filter((e, i) => i < recordNav.length - 1)
               );
-              setNextObj(() => recordObj[recordObj.length - 2]);
               setRecordObj(
-                recordObj.filter((e, i) => i < recordNav.length - 1)
+                recordObj.filter((e, i) => i < recordObj.length - 1)
               );
+              setNextObj(() => recordObj[recordObj.length - 2]);
+
               setLocationButton(-1);
-            } else if (recordObj.length === 1) {
+            } else if (recordNav.length === 1) {
               setLocationButton(-1);
               setControlWOTL(0);
               setControlButton(0);
@@ -123,14 +126,14 @@ export default function App() {
         </TouchableOpacity>
         {recordNav.map((e, i) => {
           let location = i;
-          console.log("location: ", location);
+
           return (
             <TouchableOpacity
               key={"scroll" + i}
               onPress={() => {
                 if (i > 0) {
                   setRecordNav(recordNav.filter((e, i) => i <= location));
-                  setRecordObj(recordObj.filter((e, i) => i <= location - 1));
+                  setRecordObj(recordObj.filter((e, i) => i <= location));
                   setNextObj(recordObj[location]);
 
                   setLocationButton(-1);
