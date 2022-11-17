@@ -83,6 +83,7 @@ export default function App() {
               setControlWOTL(0);
               setControlButton(0);
               setRecordNav([]);
+              setRecordObj([]);
             }
           }}
         >
@@ -98,6 +99,7 @@ export default function App() {
             setControlWOTL(0);
             setControlButton(0);
             setRecordNav([]);
+            setRecordObj([]);
           }}
         >
           <AntDesign
@@ -120,6 +122,7 @@ export default function App() {
             setControlWOTL(0);
             setControlButton(0);
             setRecordNav([]);
+            setRecordObj([]);
           }}
         >
           <Text style={{ fontSize: 17 }}> New Request {"/"} </Text>
@@ -251,6 +254,7 @@ export default function App() {
                 setControlWOTL(0);
                 setControlButton(0);
                 setRecordNav([]);
+                setRecordObj([]);
               }
             }}
           >
