@@ -131,18 +131,29 @@ export default function App() {
             <TouchableOpacity
               key={"scroll" + i}
               onPress={() => {
-                setRecordNav(
-                  recordNav.filter((e, i) => i <= recordNavLocation)
-                );
-                setRecordObj(
-                  recordObj.filter((e, i) => i <= recordNavLocation)
-                );
-                setNextObj(recordObj[recordNavLocation]);
+                if (i > 0) {
+                  setRecordNav(
+                    recordNav.filter((e, i) => i <= recordNavLocation)
+                  );
+                  setRecordObj(
+                    recordObj.filter((e, i) => i <= recordNavLocation)
+                  );
+                  setNextObj(recordObj[recordNavLocation]);
 
-                setLocationButton(-1);
+                  setLocationButton(-1);
 
-                setRecordNavLocation(i);
-                setControlButton(0);
+                  setRecordNavLocation(i);
+                  setControlButton(0);
+                } else {
+                  setRecordNav(recordNav.filter((e, i) => i === 0));
+                  setRecordObj(recordObj.filter((e, i) => i === 0));
+                  setNextObj(recordObj[0]);
+
+                  setLocationButton(-1);
+
+                  setRecordNavLocation(i);
+                  setControlButton(0);
+                }
               }}
             >
               <Text style={{ fontSize: 17 }} key={"scrollText" + i}>
