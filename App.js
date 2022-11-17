@@ -44,11 +44,13 @@ export default function App() {
 
   useEffect(() => {
     // console.log(recordNav.filter((e, i) => i <= recordNavLocation));
-    setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
-    setRecordObj(recordObj.filter((e, i) => i < recordNavLocation));
-    setNextObj(recordObj[recordNavLocation]);
+    (() => {
+      setRecordNav(recordNav.filter((e, i) => i <= recordNavLocation));
+      setRecordObj(recordObj.filter((e, i) => i <= recordNavLocation));
+      setNextObj(recordObj[recordNavLocation]);
 
-    setLocationButton(-1);
+      setLocationButton(-1);
+    })();
   }, [recordNavLocation]);
 
   return (
@@ -78,11 +80,11 @@ export default function App() {
           }}
           onPress={() => {
             if (recordObj.length > 1) {
-              setRecordNav(
+              setRecordNav((recordNav) =>
                 recordNav.filter((e, i) => i < recordNav.length - 1)
               );
-              setNextObj(() => recordObj[recordObj.length - 2]);
-              setRecordObj(
+              setNextObj((recordObj) => recordObj[recordObj.length - 2]);
+              setRecordObj((recordObj) =>
                 recordObj.filter((e, i) => i < recordNav.length - 1)
               );
               setLocationButton(-1);
