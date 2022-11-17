@@ -80,11 +80,11 @@ export default function App() {
           }}
           onPress={() => {
             if (recordObj.length > 1) {
-              setRecordNav((recordNav) =>
+              setRecordNav(
                 recordNav.filter((e, i) => i < recordNav.length - 1)
               );
-              setNextObj((recordObj) => recordObj[recordObj.length - 2]);
-              setRecordObj((recordObj) =>
+              setNextObj(() => recordObj[recordObj.length - 2]);
+              setRecordObj(
                 recordObj.filter((e, i) => i < recordNav.length - 1)
               );
               setLocationButton(-1);
