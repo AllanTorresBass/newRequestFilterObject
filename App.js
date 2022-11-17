@@ -13,7 +13,6 @@ import { obj } from "./arbol.js";
 import { returnKeys } from "./utilities";
 import { AntDesign } from "@expo/vector-icons";
 export default function App() {
-  const [increase, setIncrease] = useState(0);
   //control Which Object To Loop
   const [controlWOTL, setControlWOTL] = useState(0);
   const [controlButton, setControlButton] = useState(0);
@@ -21,7 +20,6 @@ export default function App() {
   const [selectObj, setSelectObj] = useState();
   const [locationButton, setLocationButton] = useState();
   const [textNav, setTextNav] = useState();
-  const [recordNavLocation, setRecordNavLocation] = useState(0);
   const [recordNav, setRecordNav] = useState([]);
   const [recordObj, setRecordObj] = useState([]);
 
@@ -78,7 +76,6 @@ export default function App() {
               );
               setLocationButton(-1);
             } else if (recordObj.length === 1) {
-              setRecordNavLocation(0);
               setLocationButton(-1);
               setControlWOTL(0);
               setControlButton(0);
@@ -94,7 +91,6 @@ export default function App() {
             height: 50,
           }}
           onPress={() => {
-            setRecordNavLocation(-1);
             setLocationButton(-1);
             setControlWOTL(0);
             setControlButton(0);
@@ -117,7 +113,6 @@ export default function App() {
       >
         <TouchableOpacity
           onPress={() => {
-            setRecordNavLocation(-1);
             setLocationButton(-1);
             setControlWOTL(0);
             setControlButton(0);
@@ -127,22 +122,18 @@ export default function App() {
           <Text style={{ fontSize: 17 }}> New Request {"/"} </Text>
         </TouchableOpacity>
         {recordNav.map((e, i) => {
+          let location = i;
           return (
             <TouchableOpacity
               key={"scroll" + i}
               onPress={() => {
                 if (i > 0) {
-                  setRecordNav(
-                    recordNav.filter((e, i) => i <= recordNavLocation)
-                  );
-                  setRecordObj(
-                    recordObj.filter((e, i) => i <= recordNavLocation)
-                  );
-                  setNextObj(recordObj[recordNavLocation]);
+                  setRecordNav(recordNav.filter((e, i) => i <= location));
+                  setRecordObj(recordObj.filter((e, i) => i <= location));
+                  setNextObj(recordObj[location]);
 
                   setLocationButton(-1);
 
-                  setRecordNavLocation(i);
                   setControlButton(0);
                 } else {
                   setRecordNav(recordNav.filter((e, i) => i === 0));
@@ -150,8 +141,6 @@ export default function App() {
                   setNextObj(recordObj[0]);
 
                   setLocationButton(-1);
-
-                  setRecordNavLocation(i);
                   setControlButton(0);
                 }
               }}
@@ -254,7 +243,6 @@ export default function App() {
                   Alert.alert("Must to select an option");
                 }
               } else {
-                setRecordNavLocation(-1);
                 setLocationButton(-1);
                 setControlWOTL(0);
                 setControlButton(0);
