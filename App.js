@@ -9,7 +9,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import { obj } from "./arbol.js";
+import { tree } from "./arbol.js";
 import { returnKeys } from "./utilities";
 import { AntDesign } from "@expo/vector-icons";
 export default function App() {
@@ -22,6 +22,7 @@ export default function App() {
   const [textNav, setTextNav] = useState();
   const [recordNav, setRecordNav] = useState([]);
   const [recordObj, setRecordObj] = useState([]);
+  let obj = JSON.parse(tree.val);
 
   let current;
   let next;
